@@ -20,8 +20,8 @@ int main() {
     
     int** matrix = create_matrix(n);
 
-    //print_matrix(matrix, n);
-    print_matrix_b(matrix, n);
+    print_matrix(matrix, n);
+    //print_matrix_b(matrix, n);
 
     return 0;
 }
