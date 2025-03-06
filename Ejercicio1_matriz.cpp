@@ -1,36 +1,75 @@
 #include <iostream>
+#include <format>
 
-using namespace std;
+// prototipos de funcion
+int** create_matrix(int size);
+void print_matrix(int** matrix, int size);
+void print_matrix_b(int** matrix, int size);
 
 int main() {
-    int n;
+    int n = 0;
 
-    cout << "Ingrese n: ";
-    cin >> n;
+    std::cout << "Ingrese n: ";
+    std::cin >> n;
 
-    int matrix[n][n];
+    while (n <= 1) {
+        std::cout << "n debe ser mayor a 1." << '\n';
+        std::cout << "Ingrese n: ";
+        std::cin >> n;
+    }
+    
+    int** matrix = create_matrix(n);
 
-    int count = 1;
+    print_matrix(matrix, n);
+    //print_matrix_b(matrix, n);
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            matrix[i][j] = count;
-            count++;
+    return 0;
+}
+
+// declaracion de funciones
+
+int** create_matrix(int size) {
+    // se crea el array de pointers
+    int** matrix = new int*[size];
+    // se rellena el array de pointers con los arrays que contienen ints
+    for (int i = 0; i < size; i++){
+        matrix[i] = new int[size];
+    }
+    
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            // parentesis redundantes, mejoran legibilidad
+            int value = (i * size) + (j+1);
+            matrix[i][j] = value;
         }
     }
 
-    int i = n-1;
-    int j = n-1;
-    for (int k = 0; k < n*n; k++) {
-        cout << "M" << '[' << i << ']' << '[' << j << "] " << matrix[i][j] << endl;
+    return matrix;
+}
+
+
+void print_matrix(int** matrix, int size) {
+    int i = size-1;
+    int j = size-1;
+    
+    for (int k = 0; k < size*size; k++) {
+        std::cout << std::format("M[{}][{}] = {}\n", i, j, matrix[i][j]);
         if (j == 0) {
             i--;
-            j = n-1;
+            j = size-1;
         }
         else {
             j--;
         }
     }
+}
 
-    return 0;
+void print_matrix_b(int** matrix, int size) {
+    // Intento de iterar inversamente la matriz sin usar condicionales
+    for (int k = 0; k < size*size; k++) {
+        int i = size - (k / size) - 1;
+        int j = size - (k % size) - 1;
+        std::cout << std::format("M[{}][{}] = {}\n", i, j, matrix[i][j]);
+    }
 }
