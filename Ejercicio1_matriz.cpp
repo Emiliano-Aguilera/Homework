@@ -1,12 +1,11 @@
 #include <iostream>
-
-using namespace std;
+#include <format>
 
 int main() {
     int n;
 
-    cout << "Ingrese n: ";
-    cin >> n;
+    std::cout << "Ingrese n: ";
+    std::cin >> n;
 
     int matrix[n][n];
 
@@ -22,7 +21,7 @@ int main() {
     int i = n-1;
     int j = n-1;
     for (int k = 0; k < n*n; k++) {
-        cout << "M" << '[' << i << ']' << '[' << j << "] " << matrix[i][j] << endl;
+        std::cout << std::format("M[{}][{}] {}\n", i, j, matrix[i][j]);
         if (j == 0) {
             i--;
             j = n-1;
