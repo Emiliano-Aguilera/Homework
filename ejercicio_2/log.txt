@@ -1,0 +1,12 @@
+[DEBUG] <DEBUG test message.>
+[INFO] <INFO test message.>
+[WARNING] <WARNING test message.>
+[ERROR] <ERROR test message.>
+[CRITICAL] <CRITICAL test message.>
+[DEBUG] <DEBUG test message.>
+[INFO] <INFO test message.>
+[WARNING] <WARNING test message.>
+[ERROR] <ERROR test message.>
+[CRITICAL] <CRITICAL test message.>
+[ERROR] <Intento de uso de logMessage invalido, TAG: 666>
+[] <Mensaje con error>
