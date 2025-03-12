@@ -12,30 +12,33 @@ std::shared_ptr<Node> create_node(int value);
 void push_front(int value);
 void push_back(int value);
 void insert(int value, int position);
+void erase(int position);
 void print_list();
 
 int countNodes();
 
 int main() {
     primero = create_node(0);
-    
-    push_front(1);
-    push_front(2);
 
+    push_front(1);
     print_list();
 
     push_back(4);
-    push_back(5);
     print_list();
 
     insert(9, 2);
     print_list();
 
-    insert(99, 4);
-    print_list();
-
     insert(100, 7);
     print_list();
+
+    std::cout << "Borrando" << std::endl;
+    erase(2);
+    print_list();
+
+    erase(99);
+    print_list();
+
 
 
     return 0;
@@ -81,6 +84,22 @@ void insert(int value, int position) {
         nodo->next = actual->next;
         actual->next = nodo;
     }
+}
+
+void erase(int position) {
+    int nodeCount = countNodes();
+    std::shared_ptr<Node> actual = primero;
+
+    if (position >= nodeCount) {
+        std::cerr << "Posicion invalida, borrando ultimo nodo" << std::endl;\
+        position = nodeCount - 1;
+    }
+    
+    for (int i = 0; i < position - 1; i++) {
+        actual = actual->next;
+    }
+
+    actual->next = actual->next->next;
 }   
  
 void print_list() {
